@@ -19,3 +19,14 @@ const items: ListItem[] = [
 export async function GET() {
     return NextResponse.json(items);
 }
+
+export async function POST(req: NextRequest) {
+    const body = await req.json();
+    const newItem: ListItem = {
+        id: (items.length + 1).toString(),
+        text: body.text,
+        date: new Date().toISOString().split('T')[0],
+    };
+    items.push(newItem);
+    return NextResponse.json(newItem);
+}
