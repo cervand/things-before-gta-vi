@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { fetchList } from '@/lib/fetchList';
+import { fetchList } from '@/lib/listAPI';
 import { ListItem } from '@/types/listItem';
 
 export function useListItems() {
