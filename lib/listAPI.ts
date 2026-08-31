@@ -1,4 +1,4 @@
-export async function fetchList() {
+export async function fetchListItems() {
     const response = await fetch('/api/list/items');
     const data = await response.json();
     return data;

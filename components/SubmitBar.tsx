@@ -1,22 +1,30 @@
 import { useState } from 'react';
-import { TextField, Button } from '@mui/material';
-import { useSubmitBar } from '@/hooks/useSubmitBar';
+import { TextField, Button, Box } from '@mui/material';
 
-export default function SubmitBar() {
-    const { handleSubmit, isSubmitting, error } = useSubmitBar();
-    const [text, setText] = useState(''); 
+interface SubmitBarProps {
+    onAddItem: (item: string) => void;
+}
+
+export default function SubmitBar({ onAddItem }: SubmitBarProps) {
+    const [text, setText] = useState('');
+
+    const handleAddItem = () => {
+        if (text.trim() !== '') {
+            onAddItem(text);
+            setText('');
+        }
+    };
 
     return (
-        <div>
+        <Box>
             <TextField
                 label="Text"
                 value={text}
                 onChange={(e) => setText(e.target.value)}
             />
-            <Button onClick={() => handleSubmit({ text })} disabled={isSubmitting}>
-                Submit
+            <Button onClick={handleAddItem}>
+                Add Item
             </Button>
-            {error && <p>{error}</p>}
-        </div>
+        </Box>
     );
 }
