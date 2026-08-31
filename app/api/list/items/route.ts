@@ -23,9 +23,9 @@ export async function GET() {
 export async function POST(req: NextRequest) {
     const body = await req.json();
     const newItem: ListItem = {
-        id: (items.length + 1).toString(),
+        id: crypto.randomUUID(),
         text: body.text,
-        date: new Date().toISOString().split('T')[0],
+        date: new Date().toISOString(),
     };
     items.push(newItem);
     return NextResponse.json(newItem);
